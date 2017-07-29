@@ -51,11 +51,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 -------------------------------------------*/
 app.use(
     connection(mysql,{
-        host: 'your db host',
-        user: 'user', // your mysql user
-        password : 'password', // your mysql password
+        host: 'your host',
+        user: 'your username', // your mysql user
+        password : 'your password', // your mysql password
         port : 3306, //port mysql
-        database:'dbname' // your database name
+        database:'your dbname' // your database name
     },'pool') //or single
 
 );
