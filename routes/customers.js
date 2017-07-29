@@ -163,4 +163,28 @@ router.put('/edit/(:id)', function(req,res,next){
 	}
 });
 
+router.delete('/delete/(:id)', function(req, res, next) {
+	req.getConnection(function(err,connection){
+		var customer = {
+			id: req.params.id,
+		}
+		
+		var delete_sql = 'delete from customer where ?';
+		req.getConnection(function(err,connection){
+			var query = connection.query(delete_sql, customer, function(err, result){
+				if(err)
+				{
+					var errors_detail  = ("Error Delete : %s ",err);
+					req.flash('msg_error', errors_detail); 
+					res.redirect('/customers');
+				}
+				else{
+					req.flash('msg_info', 'Delete Customer Success'); 
+					res.redirect('/customers');
+				}
+			});
+		});
+	});
+});
+
 module.exports = router;
